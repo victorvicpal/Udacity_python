@@ -103,6 +103,8 @@ Freda likes to play Starfleet Commander, Ninja Hamsters, Seahorse Adventures."
 #   The newly created network data structure
 def create_data_structure(string_input):
     network={}
+    if string_input=='':
+        return network
     GAMES={}
     friends={}
     phrase=string_input.split('.')
@@ -112,20 +114,25 @@ def create_data_structure(string_input):
             if len(new_list)>0:
                 gamer=new_list[0]
                 gamer_friends=new_list[1]
-                friends['friends']=gamer_friends.split(', ')
+                friends[gamer]=gamer_friends.split(', ')
             else:
                 gamer=new_list[0]
-                friends['friends']=new_list[1]
+                friends[gamer]=new_list[1]
         if 'likes to play' in element:
             new_list2=element.split(' likes to play ')
             if len(new_list2)>0:
                 games=new_list2[1]
                 games=games.split(', ')
-                GAMES['games']=games
+                GAMES[gamer]=games
             else:
                 games=new_list2[1]
-                GAMES['games']=games
-        network[gamer]=[friends,GAMES]
+                GAMES[gamer]=games
+    for key in friends.keys():
+        network[key] = {}
+        network[key]['friends'] = friends[key]
+        network[key]['games'] = GAMES[key]
     return network
 
-print(create_data_structure(example_input))
+dataset=create_data_structure(example_input)
+
+
