@@ -39,14 +39,18 @@ Created on Sat Dec 31 10:14:20 2016
 #   may safely add default parameters since all calls used in the grading script 
 #   will only include the arguments network, user_A, and user_B.
 
-def find_path_to_friend(network, user_A, user_B,path=[]):
-        path= path + [user_A]
-        if user_A==user_B:
-            return path
-        if user_A not in network:
-            return None
-        for node in network[user_A]['friends']:
-            if node not in path:
-                newpath = find_path_to_friend(network, node, user_B,path)
-                if newpath: return newpath
+def find_path_to_friend(network, user_A, user_B,path=None):
+    if path==None:
+        path=[]
+    path= path + [user_A]
+    if user_A==user_B:
+        return path
+    if user_A not in network:
         return None
+    for node in network[user_A]['friends']:
+        if node not in path:
+            newpath = find_path_to_friend(network, node, user_B,path)
+            if newpath: return newpath
+    return None
+
+print(find_path_to_friend(net,'Ollie','John'))
