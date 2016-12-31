@@ -133,6 +133,6 @@ def create_data_structure(string_input):
         network[key]['games'] = GAMES[key]
     return network
 
-dataset=create_data_structure(example_input)
+net=create_data_structure(example_input)
 
 
