@@ -25,13 +25,26 @@ Created on Sat Dec 31 12:07:25 2016
 #     the user's game preferences)
 
 
+#def add_new_user(network,new_user,games):
+#    dicn={'friends':[],'games':games}
+#    if new_user in network:
+#        print('The User "',new_user,'" exists already')
+#    if new_user not in network:
+#        network[new_user]=dicn
+
 def add_new_user(network,new_user,games):
     dicn={'friends':[],'games':games}
     if new_user in network:
         print('The User "',new_user,'" exists already')
     if new_user not in network:
         network[new_user]=dicn
+    return network
 
-add_new_user(net,'Viti',['Ninja Hamsters','Seven Schemers'])
-
-print(net['Viti'])
+net2 = create_data_structure('')
+print(net2)
+net2 = add_new_user(net2, 'Alice', [])
+print(net2)
+net2 = add_new_user(net2, 'Bob', [])
+print(net2)
+#net2 = add_new_user(net2, 'Bob', [])
+#net2 = add_connection(net2, 'Alice', 'Bob')

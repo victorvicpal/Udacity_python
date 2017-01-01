@@ -25,13 +25,25 @@ def add_connection(network, user_A, user_B):
     if cond==False:
         return cond
     if cond==True:
-        for element in network[user_A]['friends']:
-            if user_B in element:
-                return 'network unchanged'
-            else: network[user_A]['friends'].append(user_B)
-            return network
-	#return network
+        if network[user_A]['friends']==[]:
+            network[user_A]['friends'].append(user_B)
+        else:
+            for element in network[user_A]['friends']:
+                if user_B in element:
+                    return network
+                else: network[user_A]['friends'].append(user_B)
+        return network
  
 #print(add_connection(net,'John','Bryant'))
-add_connection(net, "John", "Freda")
-print(get_connections(net, 'John'))
+#add_connection(net, "John", "Freda")
+net2 = create_data_structure('')
+print(net2)
+net2 = add_new_user(net2, 'Alice', [])
+print(net2)
+net2 = add_new_user(net2, 'Bob', [])
+print(net2)
+net2 = add_connection(net2, 'Alice', 'Bob')
+print(net2)
+net2 = add_connection(net2, 'Alice', 'Bob')
+print(net2)
+print(get_connections(net2, 'Alice'))
